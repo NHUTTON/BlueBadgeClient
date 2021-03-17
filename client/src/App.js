@@ -1,11 +1,12 @@
+import React, { useState, useEffect } from 'react'
 import './App.css';
-
-import {useState, useEffect} from 'react';
 
 import Auth from './auth/Auth'
 import  Index from './list/index'
+import TopBar from './topBar/topBar'
 
 function App() {
+  document.body.style = 'background: #292929'
   const url = 'http://localhost:5002'
 
   const [sessionToken, setSessionToken] = useState(''); 
@@ -14,7 +15,7 @@ function App() {
     this runs to update sessiontoken to the token found in local storage
   */
   useEffect(() => { //if a session token exists in local storage, set the sessionToken to that value so it can be passed down as a prop
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') !== undefined) {
       setSessionToken(localStorage.getItem('token'));
     }
   }, []);
@@ -34,10 +35,15 @@ function App() {
     setSessionToken('');
   }
 
+  const protectedViews = () => {
+    return (sessionToken === localStorage.getItem('token') ?
+    <TopBar clickLogout={clearToken}/> : <Auth url={url} updateToken={updateToken}/>)
+  }
+
   return (
     <div>
-    <Auth url={url} updateToken={updateToken}/>
-    <Index />
+      {protectedViews()}
+      {/* <Index /> */}
     </div>
   )
 }
