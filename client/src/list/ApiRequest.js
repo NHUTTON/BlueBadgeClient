@@ -6,20 +6,20 @@ import xbox from '../assets/xbox.png'
 const ApiFetch = (props) => {
     const [search, setSearch] = useState('');
     const [results, setResults] = useState([]);
+    // console.log(results)
 
     const fetchApi = () => {
         fetch(`https://api.rawg.io/api/games?key=4205330c18e34b6ab39eec8889d15a01&search=${search}`)
   .then(response => response.json())
   .then(data =>  {
-      setResults(data.results)   
-      console.log(data)
+      setResults(data.results)
     })
     }
 
     const mapResults =  () => {
         
         return results.map((game, index) => {
-            
+            let platformLength = game.platforms.length;
             return (
                 <div>
                 <Card style={{ backgroundColor: '#333', borderColor: '#BB86FC', marginTop:"2em"}}>
@@ -39,9 +39,31 @@ const ApiFetch = (props) => {
                         </p>
                     </CardText>
                     <CardText>
-                    <p className="platforms">
-                        Platforms: {platformMapper(game)}
-                        </p>
+                      <p className="platforms">
+                        Platforms: 
+                        {
+                          (game.platforms !== null)
+                            ? game.platforms.map((platform, index) => {
+                              let currentPlat = platform.platform.name;
+                              if (currentPlat.includes('Xbox') || currentPlat.includes('PC') || currentPlat.includes('Playstation') || currentPlat.includes('Nintendo') || currentPlat.includes('Wii') || currentPlat.includes('Genesis') || currentPlat.includes('Android')) {
+                                if (index !== 0){
+                                  return (
+                                    <> {currentPlat}, </>
+                                  )
+                                } else if (index === (platformLength - 1)) {
+                                  return (
+                                    <>, {currentPlat}</>
+                                  )
+                                } else {
+                                  return (
+                                    <> {currentPlat}</>
+                                  )
+                                }
+                              }
+                            })
+                            : console.log('platforms is returning an error')
+                        }
+                      </p>
                     </CardText>
                 </CardBody>
             <Button>Add to my List</Button>
@@ -50,19 +72,24 @@ const ApiFetch = (props) => {
             )
         })
     }
-    
-    const platformMapper = (game) => {
-        if (game.platforms) {
-        game.platforms.map((platform, index) => {
-        let plats = platform.platform.name
-        if (plats.includes('Xbox') || plats.includes('PC') || plats.includes('Playstation') || plats.includes('Nintendo') || plats.includes('Wii') || plats.includes('Genesis') || plats.includes('Android')){
-            return (
-                {plats}
-                )
-            } 
-        }) 
-    }
-}
+
+  // const platformMapper = (game) => {
+  //   game.platforms.map((platform, index) => {
+  //     let game.platforms.platform.name = platform.platform.name;
+
+  //     if (platform.name) {
+  //       if (game.platforms.platform.name.includes('Xbox') || game.platforms.platform.name.includes('PC') || game.platforms.platform.name.includes('Playstation') || game.platforms.platform.name.includes('Nintendo') || game.platforms.platform.name.includes('Wii') || game.platforms.platform.name.includes('Genesis') || game.platforms.platform.name.includes('Android')) {
+  //         return (
+  //           {game.platforms.platform.name}
+  //         )
+  //       } else {
+  //         console.log('not working');
+  //       }
+  //     } else {
+  //       console.log('game.platforms.platform.name does not exist');
+  //     }
+  //   })
+  // }
 
     useEffect(() => {
         fetchApi()
