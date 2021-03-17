@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListCreate = (props) => {
+const ListDelete = (props) => {
     return(
         <div>
             <p>Hello</p>
@@ -8,4 +8,4 @@ const ListCreate = (props) => {
     )
 }
 
-export default ListCreate;
+export default ListDelete;
