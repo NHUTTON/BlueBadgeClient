@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
+// import ListCreate from  './ListCreate'
+// import ListEdit from './ListEdit'
 import List from './ListComponents/List'
 import GamesDisplay from './GamesDisplay';
 import ApiFetch from './ApiRequest'
@@ -24,7 +26,9 @@ const [game, setGame] = useState('')
 
     return(
         <div>
-            <GamesDisplay fetchGames={fetchGames} token={secret} />
+            {/* <GamesDisplay fetchGames={fetchGames} token={secret} /> */}
+            {/* <ListCreate />
+            <ListEdit /> */}
             <List />
             <ApiFetch />
         </div>

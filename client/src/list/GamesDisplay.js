@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Toast, ToastBody, ToastHeader, Button, Form } from 'reactstrap';
+import { Media, Button, Form } from 'reactstrap';
 
 const GamesDisplay = (props) => {
     const [title, setTitle] = useState('');
@@ -28,27 +28,18 @@ const GamesDisplay = (props) => {
     }
 
     return(
-      <Form onSubmit={handleSubmit}>
-<div className="container">
-  <div className="row">
-    <div className="col-sm">
-    <img width=' 200px' src='https://fancycrave.com/wp-content/uploads/2019/12/Free-Nature-Pictures-min.jpg' alt="no display"/>
-    </div>
-    <div className="col-sm">
-    <Toast>
-          <ToastHeader>
-            Game Title
-          </ToastHeader>
-          <ToastBody>
-            This is a toast on an info background — check it out!
-          </ToastBody>
-        </Toast>
-    </div>
-    <div className="col-sm">
-    <Button variant="primary">Add to List</Button>
-    </div>
-  </div>
-</div>
+    <Form onSubmit={handleSubmit}>
+<Media>
+      <Media left href="#">
+        <Media style={{width:"200px", height:"150px"}}object src="https://fancycrave.com/wp-content/uploads/2019/12/Free-Nature-Pictures-min.jpg" alt="Generic placeholder image" />
+      </Media>
+      <Media body>
+        <Media heading>
+          Game Title
+        </Media>
+Genres: <br/> Platforms:
+      </Media>
+    </Media>
 </Form>
     )
 }

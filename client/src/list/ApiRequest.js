@@ -1,47 +1,93 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardText, CardImg, CardSubtitle} from 'reactstrap';
+import {Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardText, CardImg, CardHeader, Container, Row, Col} from 'reactstrap';
+
+import xbox from '../assets/xbox.png'
 
 const ApiFetch = (props) => {
-
     const [search, setSearch] = useState('');
-    const [title, setTitle] = useState('');
-    const [date, setDate] = useState('');
-    const [genre, setGenre] = useState('');
-    const [platform, setPlatform] = useState('');
-    const [image, setImage] = useState('');
-    
-    const fetchApi = (e) => {
-        fetch(`https://api.rawg.io/api/games?key=20249120a48848b1a780a4280ea4af4b&search=${search}`)
+    const [results, setResults] = useState([]);
+
+    const fetchApi = () => {
+        fetch(`https://api.rawg.io/api/games?key=4205330c18e34b6ab39eec8889d15a01&search=${search}`)
   .then(response => response.json())
-  .then(data => {
+  .then(data =>  {
+      setResults(data.results)   
       console.log(data)
-      setTitle(data.results[0].name);
-      setImage(data.results[0].background_image)
-      setDate(data.results[0].released);
-      setGenre(data.results[0].genre)
-      setPlatform(data.results[0].platforms[0]);
     })
     }
+
+    const mapResults =  () => {
+        
+        return results.map((game, index) => {
+            
+            return (
+                <div>
+                <Card style={{ backgroundColor: '#333', borderColor: '#BB86FC', marginTop:"2em"}}>
+                <CardHeader className='cardHeader'>{game.name}</CardHeader>
+                <CardImg top width="100%" className='cardImage' src={game.background_image} alt="Card image cap" />
+                <CardBody>
+                    <CardTitle tag="h5">Released:<br/>{game.released}</CardTitle>
+                    <CardText>
+                        <p className="genres">Genres:  
+                        {
+                            game.genres.map((genre, index) => {
+                                return (
+                                    <> {genre.name} </>
+                                )
+                            })
+                        }
+                        </p>
+                    </CardText>
+                    <CardText>
+                    <p className="platforms">
+                        Platforms: {platformMapper(game)}
+                        </p>
+                    </CardText>
+                </CardBody>
+            <Button>Add to my List</Button>
+        </Card>
+        </div>
+            )
+        })
+    }
+    
+    const platformMapper = (game) => {
+        if (game.platforms) {
+        game.platforms.map((platform, index) => {
+        let plats = platform.platform.name
+        if (plats.includes('Xbox') || plats.includes('PC') || plats.includes('Playstation') || plats.includes('Nintendo') || plats.includes('Wii') || plats.includes('Genesis') || plats.includes('Android')){
+            return (
+                {plats}
+                )
+            } 
+        }) 
+    }
+}
+
+    useEffect(() => {
+        fetchApi()
+    }, [search])
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+        
+    // }
     
     return (
         <div>
-            <Form onSubmit={fetchApi()}>
+            <Form>
                 <FormGroup>
-                <Label htmlFor='search'>Search for a game</Label>
-           <Input name='search' value={search} onChange={(e) => setSearch(e.target.value)}/>
+                        <Input className="inputField" placeholder="Search for a game to add to your list!" style={{width:"40em"}} name='search' value={search} onChange={(e) => setSearch(e.target.value)}/>
                 </FormGroup>
             </Form>
-            <Card>
-        <CardImg top width="100%" src={image} alt="Card image cap" />
-        <CardBody>
-          <CardTitle tag="h5">{title}</CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
-          <CardText>{date}</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
+            <Container style={{paddingTop:"5em"}}>
+                <Row className="divCont">
+                {mapResults()}
+                </Row>
+            </Container>
         </div>
     )
+    
 }
 
 export default ApiFetch;
