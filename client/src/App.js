@@ -6,6 +6,9 @@ import  Index from './list/index'
 
 function App() {  
   const [sessionToken, setSessionToken] = useState('');
+  const [activeList, setActiveList] = useState(0);
+  const [listGamesUpdated, setListGamesUpdated] = useState(false);
+  const baseURL = `http://localhost:${process.env.REACT_SERVER_PORT}`
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
