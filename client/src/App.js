@@ -42,12 +42,8 @@ function App() {
 
   return (
     <div>
-
-    {/* <Auth /> */}
-    <Index />
-
       {protectedViews()}
-      {/* <Index /> */}
+      <Index />
     </div>
   )
 }

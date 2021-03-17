@@ -42,7 +42,9 @@ Media {
 }
 
 .platforms {
-    color:white
+    color:white;
+    font-size: .7em;
+}
 
 body{
     background-color: #292929;
