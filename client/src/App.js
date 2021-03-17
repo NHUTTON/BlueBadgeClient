@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div>
-    <Auth />
+    {/* <Auth /> */}
     <Index />
     </div>
   )
