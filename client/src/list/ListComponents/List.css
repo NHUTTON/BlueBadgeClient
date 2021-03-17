@@ -1,0 +1,43 @@
+.nav-tabs .addList {
+    border-top: 1px solid #BB86FC;
+    border-left: 1px solid #BB86FC;
+    border-right: 1px solid #BB86FC;
+    color: #BB86FC;
+    font-weight: bolder;
+    margin: 3px;
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+}
+
+#userList{
+    margin: 3px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    cursor: pointer;
+}
+
+#userList.active{
+    background-color: #BB86FC;
+    color: white;
+    margin: 3px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    cursor: pointer;
+}
+
+.listStyle{
+    border: 3px solid grey;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.emptyGames{
+    max-width: 50%;
+    max-height: 10em;
+    display: block;
+    margin: auto;
+    text-align: center;
+    color: rgb(80, 80, 80);
+}

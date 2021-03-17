@@ -13,8 +13,6 @@ function App() {
   const [activeList, setActiveList] = useState(0);
   const [listGamesUpdated, setListGamesUpdated] = useState(false);
 
-  const [sessionToken, setSessionToken] = useState(''); 
-
   /*
     this runs to update sessiontoken to the token found in local storage
   */
