@@ -1,0 +1,51 @@
+.cardImage {
+    height:200px
+}
+
+.card {
+    width: 16em;
+    height:28em;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.cardHeader {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+h5{
+    text-align: center;
+    color: white;
+    
+}
+
+.cardImage {
+    border: 2px solid black;
+}
+
+.divCont{
+    justify-content: space-between;
+}
+
+.genres {
+    color: white;
+    font-size: .7em;
+}
+
+Media {
+    height: 100px;
+    width: 100px;
+}
+
+.platforms {
+    color:white;
+    font-size: .7em;
+}
+
+body{
+    background-color: #292929;
+}

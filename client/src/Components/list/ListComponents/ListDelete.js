@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Register = (props) => {
+const ListDelete = (props) => {
     return(
         <div>
             <p>Hello</p>
@@ -8,4 +8,4 @@ const Register = (props) => {
     )
 }
 
-export default Register;
+export default ListDelete;
