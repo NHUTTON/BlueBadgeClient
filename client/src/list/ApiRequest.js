@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardText, CardImg, CardHeader, Container, Row, Col} from 'reactstrap';
 
-import xbox from '../assets/xbox.png'
-
 const ApiFetch = (props) => {
     const [search, setSearch] = useState('');
     const [results, setResults] = useState([]);
@@ -57,7 +55,7 @@ const ApiFetch = (props) => {
         let plats = platform.platform.name
         if (plats.includes('Xbox') || plats.includes('PC') || plats.includes('Playstation') || plats.includes('Nintendo') || plats.includes('Wii') || plats.includes('Genesis') || plats.includes('Android')){
             return (
-                {plats}
+                plats
                 )
             } 
         }) 
@@ -75,8 +73,9 @@ const ApiFetch = (props) => {
     
     return (
         <div>
-            <Form>
+            <Form >
                 <FormGroup>
+                    <Label htmlFor="inputField">SEARCH FOR YOUR FAVORITE <br/>GAMES! </Label>
                         <Input className="inputField" placeholder="Search for a game to add to your list!" style={{width:"40em"}} name='search' value={search} onChange={(e) => setSearch(e.target.value)}/>
                 </FormGroup>
             </Form>
