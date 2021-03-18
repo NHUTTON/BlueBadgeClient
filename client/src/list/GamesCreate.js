@@ -10,26 +10,43 @@ const GamesCreate = (props) => {
     const [image, setImage] = useState('')
     const [title, setTitle] = useState(props.game.name);
     const [date, setDate] = useState(props.game.released);
-    const [genre, setGenre] = useState([props.game.genres]);
-    const [platform, setPlatform] = useState([props.game.platforms]);
+    const [initGenre, setInitGenre] = useState(props.game.genres);
+    const [initPlatform, setInitPlatform] = useState(props.game.platforms);
     const [object, setObject] = useState(props.game)
+    const [platform, setPlatform] = useState([]);
+    const [genre, setGenre] = useState([]);
+
     console.log(platform)
 
-
     const mapPlatform =  () => {
-      return object.map((item, index) => {
-        console.log(item.platforms)
+      return initPlatform.map((item, index) => {
           return (
-              item.platform.name
+              setPlatform(item.platform.name)
+          )
+      })
+    }
+
+    const mapGenre =  () => {
+      return initGenre.map((item, index) => {
+          return (
+              setGenre(item.name)
           )
       })
     }
 
     const handleSubmit = (e) => {
       e.preventDefault();
+      mapPlatform()
+      mapGenre()
       fetch('http://localhost:5002/games/create', {
         method: 'POST',
-        body: JSON.stringify({game: {image: image, title: title, date: date, genre: genre, platform: platform}}),
+        body: JSON.stringify({game: {
+          image: image, 
+          title: title, 
+          date: date, 
+          genre: genre, 
+          platform: platform
+        }}),
         headers: new Headers({
           'Content-Type': 'application/json',
           'Authorization': props.token
@@ -37,12 +54,11 @@ const GamesCreate = (props) => {
       }).then((res) => res.json())
       .then((gameData) => {
         console.log(gameData)
-        mapPlatform()
       })
     }
 
     return(
-      <Button onClick={handleSubmit} >Add to my List</Button>
+      <Button onClick={(e) => handleSubmit(e)} >Add to my List</Button>
     )
 }
 
