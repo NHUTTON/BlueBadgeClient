@@ -44,7 +44,6 @@ function App() {
 
   return (
     <div>
-    <Auth />
       {protectedViews()}
       <Index />
     </div>

@@ -42,9 +42,23 @@ Media {
 }
 
 .platforms {
-    color:white
+    color:white;
+       font-size: .7em;
 }
 
 body {
     background-color: #292929;
 }
+
+Label {
+    color: #03DAC5;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+Form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
