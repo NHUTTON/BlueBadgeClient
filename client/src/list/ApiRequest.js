@@ -37,7 +37,7 @@ console.log(results)
                         <p className="genres">Genres:  
                         {
                             game.genres.map((genre, index) => {
-                              if (index <2) {
+                              if (index < 2) {
                                 return (
                                     <> | {genre.name} | </>
                                 )
@@ -46,7 +46,7 @@ console.log(results)
                         }
                         </p>
                     </CardText>
-                    <CardText style={{marginBottom:"1em"}}>
+                    <CardText>
                       <p className="platforms">
                         Platforms: 
                         {
@@ -70,7 +70,7 @@ console.log(results)
                       </p>
                     </CardText>
                 </CardBody>
-           <GamesCreate game={game} />
+           <GamesCreate game={game} token={props.token} />
         </Card>
         </div>
             )
