@@ -1,19 +1,29 @@
 import React, {useState, useEffect} from 'react';
 import { Media, Button, Form } from 'reactstrap';
-
+import GamesTable from './GamesTable'
  /*
 
  This is submitting data from the API to the data base
 
  */
-const GamesDisplay = (props) => {
+const GamesCreate = (props) => {
     const [image, setImage] = useState('')
     const [title, setTitle] = useState(props.game.name);
     const [date, setDate] = useState(props.game.released);
-    const [genre, setGenre] = useState(props.game.genres);
-    const [platform, setPlatform] = useState(props.game.platfroms);
+    const [genre, setGenre] = useState([props.game.genres]);
+    const [platform, setPlatform] = useState([props.game.platfroms]);
+    const [object, setObject] = useState(props.game)
+    console.log(object)
 
-    console.log(platform)
+    const mapPlatform =  () => {
+      let object = props.game
+      return object.map((item, index) => {
+        console.log(item.platform)
+          return (
+              item.platform.name
+          )
+      })
+    }
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -27,12 +37,13 @@ const GamesDisplay = (props) => {
       }).then((res) => res.json())
       .then((gameData) => {
         console.log(gameData)
+        mapPlatform()
       })
     }
 
     return(
-      <Button onClick={handleSubmit}>Add to my List</Button>
+      <Button onClick={handleSubmit} >Add to my List</Button>
     )
 }
 
-export default GamesDisplay;
+export default GamesCreate;
