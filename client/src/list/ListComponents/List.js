@@ -131,12 +131,7 @@ const List = (props) => {
             : ""}
             <TabContent>
                 <TabPane>
-                    {/* {lists.length > 0 ? <Games baseURL={props.baseURL} sessionToken={props.sessionToken} activeList={props.activeList} listGamesUpdated={props.listGamesUpdated} setListGamesUpdated={props.setListGamesUpdated} /> 
-                    :
-                    <><img className="emptyGames" src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg" alt="Add Games" />
-                    <p className="emptyGames">Create a list to add games.</p>
-                    </>
-                } */}
+                    {/* {Games} */}
                 </TabPane>
             </TabContent>
         </div>
