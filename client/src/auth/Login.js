@@ -7,8 +7,10 @@ const Login = (props) => {
     const [password, setPassword] = useState('');
     
     //form validation
+
     // const {register, handleSubmit} = useForm();
     // const onSubmit = (data) => console.log(data);
+
 
     //fetch to our server
     let loginSubmit = (event) => {
@@ -47,7 +49,7 @@ const Login = (props) => {
                             <Label htmlFor='password'>Password:</Label>
                             <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </FormGroup>
-                        <Button type='submit' onClick={props.toggleLogin} style={{alignContent: "center"}}>Login</Button>{' '}
+                        <Button style={{alignContent: "center"}}>Login</Button>
                     </Form>
                 </ModalBody>
             </Modal>

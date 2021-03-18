@@ -14,6 +14,7 @@ const GamesCreate = (props) => {
     const [initGenre, setInitGenre] = useState([]);
     const [initPlatform, setInitPlatform] = useState([]);
     const [object, setObject] = useState(props.game)
+
     const [platform, setPlatform] = useState([]);
     const [genre, setGenre] = useState([]);
 
