@@ -56,7 +56,7 @@ function App() {
       <br/>
       <div style={{height: "8vh"}}></div>
       <br/>
-      <Index />
+      {/* <Index /> */}
 
       <br/>
       <br/>
