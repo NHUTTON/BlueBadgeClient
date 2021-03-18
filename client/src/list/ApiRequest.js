@@ -88,7 +88,8 @@ const ApiFetch = (props) => {
         <div>
             <Form className="searchForm">
                 <FormGroup>
-                    <Label className="searchLabel" style={{display:"block", textAlign:"center", textShadow: "4px 4px #121212"}}><i>SEARCH FOR YOUR FAVORITE<br/>GAMES!</i></Label>
+                    <Label className="searchLabel" style={{display:"block", fontSize: "3.2em",textAlign:"center", textShadow: "4px 4px #121212"}}><i>SEARCH FOR YOUR FAVORITE<br/>GAMES!</i></Label>
+                    <div style={{height: "8vh"}}></div>
                         <Input className="inputField" placeholder="Search" style={{width:"45em", marginTop:"2em"}} name='search' value={search} onChange={(e) => setSearch(e.target.value)}/>
                 </FormGroup>
             </Form>
