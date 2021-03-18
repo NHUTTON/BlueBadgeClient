@@ -4,16 +4,17 @@ import './App.css';
 import Auth from './auth/Auth'
 import  Index from './list/index'
 import TopBar from './topBar/topBar'
+import Footer from './footer/footer';
 
 function App() {  
   document.body.style = 'background: #292929'
   const url = 'http://localhost:5002'
+
   const baseURL = `http://localhost:${process.env.REACT_SERVER_PORT}`
-  const [sessionToken, setSessionToken] = useState('');
   const [activeList, setActiveList] = useState(0);
   const [listGamesUpdated, setListGamesUpdated] = useState(false);
-
   const [sessionToken, setSessionToken] = useState(''); 
+
 
   /*
     this runs to update sessiontoken to the token found in local storage
@@ -40,7 +41,7 @@ function App() {
   }
 
   const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') ?
+    return (localStorage.getItem('token') ?
     <TopBar clickLogout={clearToken}/> : <Auth url={url} updateToken={updateToken}/>)
   }
 
@@ -48,6 +49,9 @@ function App() {
     <div>
       {protectedViews()}
       <Index />
+      <br/>
+      <br/>
+      <Footer />
     </div>
   )
 }
