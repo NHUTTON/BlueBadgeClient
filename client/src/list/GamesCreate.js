@@ -15,6 +15,7 @@ const GamesCreate = (props) => {
     const [object, setObject] = useState(props.game)
     console.log(platform)
 
+
     const mapPlatform =  () => {
       return object.map((item, index) => {
         console.log(item.platforms)

@@ -14,13 +14,13 @@ const ApiFetch = (props) => {
     const [genre, setGenre] = useState([]);
     const [platform, setPlatform] = useState([]);
 
-console.log(results)
+// console.log(results)
     const fetchApi = () => {
         fetch(`https://api.rawg.io/api/games?key=4205330c18e34b6ab39eec8889d15a01&search=${search}`)
         .then(response => response.json())
         .then(data =>  {
             setResults(data.results)
-            console.log(data)
+            // console.log(data)
     })
     }
        
@@ -84,7 +84,7 @@ console.log(results)
         <div>
             <Form className="searchForm">
                 <FormGroup>
-                    <Label className="searchLabel" style={{display:"block", textAlign:"center"}}>SEARCH FOR YOUR FAVORITE <br/>GAMES! </Label>
+                    <Label className="searchLabel" style={{display:"block", textAlign:"center", textShadow: "4px 4px #121212"}}><i>SEARCH FOR YOUR FAVORITE<br/>GAMES!</i></Label>
                         <Input className="inputField" placeholder="Search" style={{width:"45em", marginTop:"2em"}} name='search' value={search} onChange={(e) => setSearch(e.target.value)}/>
                 </FormGroup>
             </Form>
