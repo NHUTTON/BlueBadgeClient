@@ -1,7 +1,10 @@
-import React from 'react';
-import {Table, Button} from 'reactstrap';
+import React, {useState, useEffect} from 'react';
+
+import {Table, Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardText, CardImg, CardHeader, Container, Row, Col} from 'reactstrap';
 
 const GamesTable = (props) => {
+    const [gamesList, setGamesList] = useState([]);
+
     const deleteTable = (game) => {
         fetch(`http://localhost:5002/games/delete${game}`, {
             method: 'DELETE',
@@ -13,19 +16,29 @@ const GamesTable = (props) => {
         .then(() => props.fetchGames())
     }
 
+    const fetchGames = () => {
+        let url = props.baseURL + '/games/mine'
+        fetch(url, {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': props.sessionToken
+            })
+        }) .then((res) => res.json())
+        .then((json) => {
+            setGamesList(json)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
     const gameMapper = () => {
-        return props.game.map((game, index) => {
+        return gamesList.map((game, index) => {
             return(
-                <tr key={index}>
-                    <td><img src={game.image} /></td>
-                    <td>{game.title}</td>
-                    <td>{game.date}</td>
-                    <td>{game.genres}</td>
-                    <td>{game.platforms}</td>
-                    <td>
-                        <Button>Delete</Button>
-                    </td>
-                </tr>
+                <div>
+                    placeholder text
+        </div>
             )
         })
     }

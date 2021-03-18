@@ -12,7 +12,6 @@ function App() {
 
   const baseURL = `http://localhost:${process.env.REACT_SERVER_PORT}`
   const [activeList, setActiveList] = useState(0);
-  const [listGamesUpdated, setListGamesUpdated] = useState(false);
   const [sessionToken, setSessionToken] = useState(''); 
 
 
