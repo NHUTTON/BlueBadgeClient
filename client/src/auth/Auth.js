@@ -7,8 +7,6 @@ import {Navbar,
     NavItem,
     Button} from 'reactstrap';
 
-import './Auth.css';
-
 
 import Login from  './Login';
 import Register from  './Register';
