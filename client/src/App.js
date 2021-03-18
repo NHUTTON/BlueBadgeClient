@@ -44,12 +44,10 @@ function App() {
 
   return (
     <div>
+      {protectedViews()}
 
-    {/* <Auth /> */}
     <Index />
 
-      {protectedViews()}
-      {/* <Index /> */}
     </div>
   )
 }

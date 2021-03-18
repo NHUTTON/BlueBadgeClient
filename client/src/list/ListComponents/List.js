@@ -5,13 +5,14 @@ import classnames from "classnames";
 import CreateList from './ListCreate';
 // import Games from './GamesDisplay';
 // import ListEdit from './ListEdit';
-// import ListDelete from './ListDelete';
+import ListDelete from './ListDelete';
 
 const List = (props) => {
     const [activeTab, setActiveTab] = useState(0);
     const [addList, setAddList] = useState(false);
     const [lists, setLists] = useState([])
     const [errForm, setErrForm] = useState("")
+    const [deleteList, setDeleteList] = useState(false);
     
 
     const toggleTab = (tab) => {
@@ -30,27 +31,31 @@ const List = (props) => {
         setAddList(true);
     }
 
-    // const getList = () => {
-    //     let url = props.baseURL + '/list/:id'
+    const deleteOn = () => {
+        setDeleteList(true);
+    }
 
-    //     fetch(url,{
-    //         method: 'GET',
-    //         headers: new Headers({
-    //             'Content-Type': 'application/json',
-    //             'Authorization': props.sessionToken
-    //         }),
-    //     }).then((res) => res.json())
-    //     .then((json) => {
-    //         setLists(json);
-    //         if (!addList){
-    //             props.setActiveList(json[0].id)
-    //         }
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //         setErrForm(err);
-    //     })
-    // }
+    const getList = () => {
+        let url = props.baseURL + '/list/:id'
+
+        fetch(url,{
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': props.sessionToken
+            }),
+        }).then((res) => res.json())
+        .then((json) => {
+            setLists(json);
+            if (!addList){
+                props.setActiveList(json[0].id)
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            setErrForm(err);
+        })
+    }
 
     const reGetList = () => {
         let url = props.baseURL + '/list/:id';
@@ -119,7 +124,11 @@ const List = (props) => {
                     </NavLink>
                 </NavItem>
             </Nav>
-
+            {lists.length > 1 ? 
+            <Container className="d-flex justify-content-end my-2" >
+            <Button className="mr-3" color="danger" size="sm" onClick={() => { deleteOn(); }}>{(deleteList) ? <ListDelete baseURL={props.baseURL} sessionToken={props.sessionToken} activeList={props.activeList} getList={getList} setDeleteList={setDeleteList} /> : null}Delete List</Button>
+            </Container>
+            : ""}
             <TabContent>
                 <TabPane>
                     {/* {lists.length > 0 ? <Games baseURL={props.baseURL} sessionToken={props.sessionToken} activeList={props.activeList} listGamesUpdated={props.listGamesUpdated} setListGamesUpdated={props.setListGamesUpdated} /> 

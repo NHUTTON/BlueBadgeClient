@@ -30,7 +30,7 @@ const [game, setGame] = useState('')
             {/* <ListCreate />
             <ListEdit /> */}
             <List />
-            <ApiFetch />
+            {/* <ApiFetch /> */}
         </div>
     )
 }
