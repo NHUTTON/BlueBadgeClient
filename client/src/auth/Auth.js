@@ -10,7 +10,7 @@ import './Auth.css';
 
 import Login from  './Login';
 import Register from  './Register';
-import Logo from '../../assets/Logo.png';
+import Logo from '../assets/Logo.png';
 
 const Auth = (props) => {
     const [currentUser, setCurrentUser] = useState('');

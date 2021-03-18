@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 
-import Auth from './Components/auth/Auth'
-import  Index from './Components/list/index'
-import TopBar from './Components/topBar/topBar'
-import Footer from './Components/footer/footer';
+import Auth from './auth/Auth'
+import  Index from './list/index'
+import TopBar from './topBar/topBar'
+import Footer from './footer/footer';
 
 function App() {  
   document.body.style = 'background: #292929'
