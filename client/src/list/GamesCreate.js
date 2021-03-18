@@ -7,37 +7,39 @@ import GamesTable from './GamesTable'
 
  */
 const GamesCreate = (props) => {
-    const [image, setImage] = useState(props.game.background_image)
-    const [title, setTitle] = useState(props.game.name);
-    const [date, setDate] = useState(props.game.released);
-    const [initGenre, setInitGenre] = useState(props.game.genres);
-    const [initPlatform, setInitPlatform] = useState(props.game.platforms);
+  console.log(props)
+    const [image, setImage] = useState("")
+    const [title, setTitle] = useState("");
+    const [date, setDate] = useState("");
+    const [initGenre, setInitGenre] = useState([]);
+    const [initPlatform, setInitPlatform] = useState([]);
     const [object, setObject] = useState(props.game)
     const [platform, setPlatform] = useState([]);
     const [genre, setGenre] = useState([]);
 
+    // console.log(object)
    // console.log(initPlatform)
  
-  //  console.log(image)
-  //  console.log(title)
-  //  console.log(date)
+   console.log(image)
+   console.log(title)
+   console.log(date)
    console.log(platform)
    console.log(genre)
+
     const mapPlatform =  () => {
-      return initPlatform.map((item, index) => {
-          return (
-              setPlatform(item.platform.name)
-          )
-      })
-    }
+      return initPlatform.map(item => setPlatform([...initPlatform, item.platform.name]))}
+      console.log(initPlatform)
 
     const mapGenre =  () => {
-      return initGenre.map((item, index) => {
-          return (
-              setGenre(item.name)
-          )
-      })
-    }
+      return initGenre.map(item => setGenre([...initGenre, item.name]))}
+
+    useEffect(() => {
+        setImage(props.game.background_image);
+        setTitle(props.game.name);
+        setDate(props.game.released);
+        setInitGenre(props.game.genres);
+        setInitPlatform(props.game.platforms)
+    }, []);
 
     const handleSubmit = (e) => {
       console.log('hi there');
@@ -57,8 +59,8 @@ const GamesCreate = (props) => {
           'Authorization': props.token
         })
       }).then(res =>{
-        res.json()
-        console.log('this is nick')
+        console.log('hi nick')
+        return res.json()
       })
       .then((gameData) => {
         console.log(gameData)

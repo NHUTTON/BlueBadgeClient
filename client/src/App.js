@@ -48,7 +48,7 @@ function App() {
   return (
     <div>
       {protectedViews()}
-      <Index />
+      <Index token={sessionToken} />
       <br/>
       <br/>
       <Footer />
