@@ -39,8 +39,8 @@ const GamesCreate = (props) => {
         setImage(props.game.background_image);
         setTitle(props.game.name);
         setDate(props.game.released);
-        setInitGenre(props.game.genres);
-        setInitPlatform(props.game.platforms)
+        // setInitGenre(props.game.genres);
+        // setInitPlatform(props.game.platforms)
     }, []);
 
     const handleSubmit = (e) => {

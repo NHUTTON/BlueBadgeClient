@@ -14,6 +14,10 @@ const ApiFetch = (props) => {
     const [genre, setGenre] = useState([]);
     const [platform, setPlatform] = useState([]);
 
+    const something = {
+
+    }
+    
 // console.log(results)
     const fetchApi = () => {
         fetch(`https://api.rawg.io/api/games?key=4205330c18e34b6ab39eec8889d15a01&search=${search}`)
