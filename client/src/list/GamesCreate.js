@@ -11,14 +11,14 @@ const GamesCreate = (props) => {
     const [title, setTitle] = useState(props.game.name);
     const [date, setDate] = useState(props.game.released);
     const [genre, setGenre] = useState([props.game.genres]);
-    const [platform, setPlatform] = useState([props.game.platfroms]);
+    const [platform, setPlatform] = useState([props.game.platforms]);
     const [object, setObject] = useState(props.game)
-    // console.log(object)
+    console.log(platform)
+
 
     const mapPlatform =  () => {
-      let object = props.game
       return object.map((item, index) => {
-        // console.log(item.platform)
+        console.log(item.platforms)
           return (
               item.platform.name
           )
