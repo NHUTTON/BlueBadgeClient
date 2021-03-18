@@ -3,6 +3,7 @@ import {Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardTe
 import GamesCreate from './GamesCreate'
 import GamesTable from './GamesTable'
 
+import xbox from '../assets/xbox.png'
 
 const ApiFetch = (props) => {
     const [search, setSearch] = useState('');
@@ -24,7 +25,6 @@ console.log(results)
     }
        
     const mapResults =  () => {
-        
         return results.map((game, index) => {
             return (
                 <div>
@@ -62,7 +62,7 @@ console.log(results)
                                   return (
                                     <> | {currentPlat} |</>
                                   )
-                                }
+                                } 
                               }
                             })
                             : console.log('platforms is returning an error')
@@ -76,7 +76,6 @@ console.log(results)
             )
         })
     }
-    
     useEffect(() => {
         fetchApi()
     }, [search])

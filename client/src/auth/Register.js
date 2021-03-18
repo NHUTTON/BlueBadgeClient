@@ -30,8 +30,6 @@ const Register = (props) => {
 
     const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color: "white" }} onClick={props.toggleSignUp}>&times;</button>;
 
-    console.log(!props.test + 'hello testing');
-
     return(
         <Modal isOpen={props.signUp} toggle={props.toggleSignUp} external={externalCloseBtn} className='Modal'>
             <ModalHeader style={{color: "black"}}>Sign Up</ModalHeader>
