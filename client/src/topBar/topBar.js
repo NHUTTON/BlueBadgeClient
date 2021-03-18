@@ -8,7 +8,7 @@ import {
     NavItem,
     Button
 } from 'reactstrap';
-import Logo from '../assets/Logo.png'
+import Logo from '../../assets/Logo.png';
 
 const TopBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);

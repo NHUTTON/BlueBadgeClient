@@ -17,14 +17,20 @@ const Login = (props) => {
             })
         })
             .then((res) => res.json())
-            .then((data) => props.updateToken(data.sessionToken))
+            .then((data) => {
+                console.log(data.sessionToken);
+                props.updateToken(data.sessionToken);
+            })
     }
 
+    
+    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={props.toggleLogin}>&times;</button>;
+    
 
     return(
         <div>
-            <Modal isOpen={true}>
-                <ModalHeader>Login</ModalHeader>
+            <Modal isOpen={props.login} toggle={props.toggleLogin} className='Modal' external={externalCloseBtn}>
+                <ModalHeader style={{color: "#292929"}}>Login</ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
@@ -35,7 +41,7 @@ const Login = (props) => {
                             <Label htmlFor='password'>Password:</Label>
                             <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </FormGroup>
-                        <Button type='submit'>Login</Button>
+                        <Button type='submit' onClick={props.toggleLogin} style={{alignContent: "center"}}>Login</Button>{' '}
                     </Form>
                 </ModalBody>
             </Modal>

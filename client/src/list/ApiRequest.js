@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardText, CardImg, CardHeader, Container, Row, Col} from 'reactstrap';
 
-import xbox from '../assets/xbox.png'
+import xbox from '../../assets/xbox.png'
 
 const ApiFetch = (props) => {
     const [search, setSearch] = useState('');
@@ -17,9 +17,8 @@ const ApiFetch = (props) => {
     }
 
     const mapResults =  () => {
-        
         return results.map((game, index) => {
-            let platformLength = game.platforms.length;
+
             return (
                 <div>
                 <Card style={{ backgroundColor: '#333', borderColor: '#BB86FC', marginTop:"2em"}}>
@@ -48,15 +47,11 @@ const ApiFetch = (props) => {
                               if (currentPlat.includes('Xbox') || currentPlat.includes('PC') || currentPlat.includes('Playstation') || currentPlat.includes('Nintendo') || currentPlat.includes('Wii') || currentPlat.includes('Genesis') || currentPlat.includes('Android')) {
                                 if (index !== 0){
                                   return (
-                                    <> {currentPlat}, </>
-                                  )
-                                } else if (index === (platformLength - 1)) {
-                                  return (
-                                    <>, {currentPlat}</>
+                                    <> {currentPlat},</>
                                   )
                                 } else {
                                   return (
-                                    <> {currentPlat}</>
+                                    <> {currentPlat},</>
                                   )
                                 }
                               }
@@ -72,24 +67,6 @@ const ApiFetch = (props) => {
             )
         })
     }
-
-  // const platformMapper = (game) => {
-  //   game.platforms.map((platform, index) => {
-  //     let game.platforms.platform.name = platform.platform.name;
-
-  //     if (platform.name) {
-  //       if (game.platforms.platform.name.includes('Xbox') || game.platforms.platform.name.includes('PC') || game.platforms.platform.name.includes('Playstation') || game.platforms.platform.name.includes('Nintendo') || game.platforms.platform.name.includes('Wii') || game.platforms.platform.name.includes('Genesis') || game.platforms.platform.name.includes('Android')) {
-  //         return (
-  //           {game.platforms.platform.name}
-  //         )
-  //       } else {
-  //         console.log('not working');
-  //       }
-  //     } else {
-  //       console.log('game.platforms.platform.name does not exist');
-  //     }
-  //   })
-  // }
 
     useEffect(() => {
         fetchApi()

@@ -4,8 +4,7 @@ import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} fr
 const Register = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isOpen, setIsOpen] = useState(true);
-
+    // const [isOpen, setIsOpen] = useState(true);
 
     let handleSubmit = (event) => {
         event.preventDefault();
@@ -22,15 +21,19 @@ const Register = (props) => {
     }
 
     //this conditional checks for special characters is in the username and password
-    const modalToggle = () => {
-        if (username.match(props.format) && username.length > 4 && password.length > 5) {
-            setIsOpen(!isOpen);
-        }
-    }
+    // const modalToggle = () => {
+    //     if (username.match(props.format) && username.length > 4 && password.length > 5) {
+    //         setIsOpen(!isOpen);
+    //     }
+    // }
+
+    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={props.toggleSignUp}>&times;</button>;
+
+    console.log(!props.test + 'hello testing');
 
     return(
-        <Modal isOpen={isOpen}>
-            <ModalHeader>Sign Up</ModalHeader>
+        <Modal isOpen={props.signUp} toggle={props.toggleSignUp} external={externalCloseBtn} className='Modal'>
+            <ModalHeader style={{color: "black"}}>Sign Up</ModalHeader>
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
@@ -43,7 +46,7 @@ const Register = (props) => {
                         <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         <p><i>Password must be 5 or more characters.</i></p>
                     </FormGroup>
-                    <Button type='submit' onClick={modalToggle}>Create Account</Button>
+                    <Button type='submit' onClick={props.toggleSignUp}>Create Account</Button>
                 </Form>
             </ModalBody>
         </Modal>
