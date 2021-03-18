@@ -53,10 +53,12 @@ function App() {
   return (
     <div>
       {protectedViews()}
+      <Index token={sessionToken} />
       <br/>
       <div style={{height: "8vh"}}></div>
       <br/>
       <Index />
+
       <br/>
       <br/>
       <Footer />
