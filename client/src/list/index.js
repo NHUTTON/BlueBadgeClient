@@ -27,7 +27,7 @@ const [games, setGames] = useState('')
 
     return(
         <div>
-            <ApiFetch />
+            <ApiFetch token={secret} />
             {/* <GamesTable fetchGames={fetchGames} games={games} token={secret} /> */}
             {/* <ListCreate />
             <ListEdit /> */}
