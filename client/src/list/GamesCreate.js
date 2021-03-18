@@ -7,7 +7,7 @@ import GamesTable from './GamesTable'
 
  */
 const GamesCreate = (props) => {
-    const [image, setImage] = useState('')
+    const [image, setImage] = useState(props.game.background_image)
     const [title, setTitle] = useState(props.game.name);
     const [date, setDate] = useState(props.game.released);
     const [initGenre, setInitGenre] = useState(props.game.genres);
@@ -16,8 +16,13 @@ const GamesCreate = (props) => {
     const [platform, setPlatform] = useState([]);
     const [genre, setGenre] = useState([]);
 
-    console.log(platform)
-
+   // console.log(initPlatform)
+ 
+  //  console.log(image)
+  //  console.log(title)
+  //  console.log(date)
+   console.log(platform)
+   console.log(genre)
     const mapPlatform =  () => {
       return initPlatform.map((item, index) => {
           return (
@@ -35,7 +40,7 @@ const GamesCreate = (props) => {
     }
 
     const handleSubmit = (e) => {
-      e.preventDefault();
+      console.log('hi there');
       mapPlatform()
       mapGenre()
       fetch('http://localhost:5002/games/create', {
@@ -45,20 +50,23 @@ const GamesCreate = (props) => {
           title: title, 
           date: date, 
           genre: genre, 
-          platform: platform
+          platform: platform,
         }}),
         headers: new Headers({
           'Content-Type': 'application/json',
           'Authorization': props.token
         })
-      }).then((res) => res.json())
+      }).then(res =>{
+        res.json()
+        console.log('this is nick')
+      })
       .then((gameData) => {
         console.log(gameData)
       })
     }
 
     return(
-      <Button onClick={(e) => handleSubmit(e)} >Add to my List</Button>
+      <Button onClick={handleSubmit} >Add to my List</Button>
     )
 }
 
