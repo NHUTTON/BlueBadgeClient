@@ -29,8 +29,8 @@ const Register = (props) => {
     }
 
     return(
-        <Modal isOpen={isOpen}>
-            <ModalHeader>Sign Up</ModalHeader>
+        <Modal isOpen={isOpen} className='Modal'>
+            <ModalHeader style={{color: "black"}}>Sign Up</ModalHeader>
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>

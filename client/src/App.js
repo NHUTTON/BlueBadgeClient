@@ -38,8 +38,11 @@ function App() {
   }
 
   const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') ?
-    <TopBar clickLogout={clearToken}/> : <Auth url={url} updateToken={updateToken}/>)
+    return ( 
+      (sessionToken === localStorage.getItem('token'))
+        ? <TopBar clickLogout={clearToken}/> 
+        : <Auth url={url} updateToken={updateToken}/>
+    )
   }
 
   return (

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Row, Col, Container} from 'reactstrap';
+import './Auth.css';
 
 import Login from  './Login';
 import Register from  './Register';

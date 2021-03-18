@@ -17,14 +17,17 @@ const Login = (props) => {
             })
         })
             .then((res) => res.json())
-            .then((data) => props.updateToken(data.sessionToken))
+            .then((data) => {
+                console.log(data.sessionToken);
+                props.updateToken(data.sessionToken);
+            })
     }
 
 
     return(
         <div>
-            <Modal isOpen={true}>
-                <ModalHeader>Login</ModalHeader>
+            <Modal isOpen={true} className='Modal'>
+                <ModalHeader style={{color: "#292929"}}>Login</ModalHeader>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
                         <FormGroup>
@@ -35,7 +38,7 @@ const Login = (props) => {
                             <Label htmlFor='password'>Password:</Label>
                             <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </FormGroup>
-                        <Button type='submit'>Login</Button>
+                        <Button type='submit' style={{alignContent: "center"}}>Login</Button>
                     </Form>
                 </ModalBody>
             </Modal>

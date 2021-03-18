@@ -15,7 +15,7 @@ const [game, setGame] = useState('')
         method: 'GET',
         headers: new Headers ({
             'Content-Type': 'application/json',
-            'Authorizaiton': secret
+            'Authorization': secret
         })
     }).then((res) => res.json())
     .then((logData)=>{
@@ -29,7 +29,7 @@ const [game, setGame] = useState('')
             {/* <GamesDisplay fetchGames={fetchGames} token={secret} /> */}
             {/* <ListCreate />
             <ListEdit /> */}
-            <List />
+            {/* <List /> */}
             <ApiFetch />
         </div>
     )
