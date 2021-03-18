@@ -24,8 +24,8 @@ const Login = (props) => {
     }
 
     
+
     const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color:"white" }} onClick={props.toggleLogin}>&times;</button>;
-    
 
     return(
         <div>
