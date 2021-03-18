@@ -7,37 +7,62 @@ import GamesTable from './GamesTable'
 
  */
 const GamesCreate = (props) => {
-    const [image, setImage] = useState('')
+    const [image, setImage] = useState(props.game.background_image)
     const [title, setTitle] = useState(props.game.name);
     const [date, setDate] = useState(props.game.released);
-    const [genre, setGenre] = useState([props.game.genres]);
-    const [platform, setPlatform] = useState([props.game.platforms]);
+    const [initGenre, setInitGenre] = useState(props.game.genres);
+    const [initPlatform, setInitPlatform] = useState(props.game.platforms);
     const [object, setObject] = useState(props.game)
-    // console.log(platform)
 
+    const [platform, setPlatform] = useState([]);
+    const [genre, setGenre] = useState([]);
 
+   // console.log(initPlatform)
+ 
+  //  console.log(image)
+  //  console.log(title)
+  //  console.log(date)
+   console.log(platform)
+   console.log(genre)
     const mapPlatform =  () => {
-      return object.map((item, index) => {
-        // console.log(item.platforms)
+      return initPlatform.map((item, index) => {
           return (
-              item.platform.name
+              setPlatform(item.platform.name)
+          )
+      })
+    }
+
+    const mapGenre =  () => {
+      return initGenre.map((item, index) => {
+          return (
+              setGenre(item.name)
           )
       })
     }
 
     const handleSubmit = (e) => {
-      e.preventDefault();
+      console.log('hi there');
+      mapPlatform()
+      mapGenre()
       fetch('http://localhost:5002/games/create', {
         method: 'POST',
-        body: JSON.stringify({game: {image: image, title: title, date: date, genre: genre, platform: platform}}),
+        body: JSON.stringify({game: {
+          image: image, 
+          title: title, 
+          date: date, 
+          genre: genre, 
+          platform: platform,
+        }}),
         headers: new Headers({
           'Content-Type': 'application/json',
           'Authorization': props.token
         })
-      }).then((res) => res.json())
+      }).then(res =>{
+        res.json()
+        console.log('this is nick')
+      })
       .then((gameData) => {
         console.log(gameData)
-        mapPlatform()
       })
     }
 
