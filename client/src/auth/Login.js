@@ -24,8 +24,8 @@ const Login = (props) => {
     }
 
     
-    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={props.toggleLogin}>&times;</button>;
-    
+
+    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color:"white" }} onClick={props.toggleLogin}>&times;</button>;
 
     return(
         <div>
@@ -36,7 +36,7 @@ const Login = (props) => {
                         <FormGroup>
                             <Label htmlFor='username'>Username:</Label>
                             <Input name='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
-                        </FormGroup>
+                            </FormGroup>
                         <FormGroup>
                             <Label htmlFor='password'>Password:</Label>
                             <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>

@@ -9,9 +9,12 @@ import Footer from './footer/footer';
 function App() {  
   document.body.style = 'background: #292929'
   const url = 'http://localhost:5002'
-  const [sessionToken, setSessionToken] = useState('');
+
+  const baseURL = `http://localhost:${process.env.REACT_SERVER_PORT}`
   const [activeList, setActiveList] = useState(0);
   const [listGamesUpdated, setListGamesUpdated] = useState(false);
+  const [sessionToken, setSessionToken] = useState(''); 
+
 
   /*
     this runs to update sessiontoken to the token found in local storage
@@ -38,7 +41,7 @@ function App() {
   }
 
   const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') ?
+    return (localStorage.getItem('token') ?
     <TopBar clickLogout={clearToken}/> : <Auth url={url} updateToken={updateToken}/>)
   }
 

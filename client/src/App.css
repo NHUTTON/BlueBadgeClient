@@ -17,7 +17,7 @@
     text-align: center;
 }
 
-h5{
+.cardTitleh5{
     text-align: center;
     color: white;
     
@@ -33,7 +33,7 @@ h5{
 
 .genres {
     color: white;
-    font-size: .7em;
+    font-size: .8em;
 }
 
 Media {
@@ -43,9 +43,23 @@ Media {
 
 .platforms {
     color:white;
-    font-size: .7em;
+       font-size: .62em;
+     
 }
 
-body{
+body {
     background-color: #292929;
 }
+
+.searchLabel {
+    color: #03DAC5;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.searchForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

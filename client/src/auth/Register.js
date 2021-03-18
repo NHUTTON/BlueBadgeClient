@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react';
 import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 
@@ -27,9 +28,7 @@ const Register = (props) => {
     //     }
     // }
 
-    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px' }} onClick={props.toggleSignUp}>&times;</button>;
-
-    console.log(!props.test + 'hello testing');
+    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color: "white" }} onClick={props.toggleSignUp}>&times;</button>;
 
     return(
         <Modal isOpen={props.signUp} toggle={props.toggleSignUp} external={externalCloseBtn} className='Modal'>
