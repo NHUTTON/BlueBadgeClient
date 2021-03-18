@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import {useForm} from 'react-hook-form';
 
 const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    
+    //form validation
+    const {register, handleSubmit} = useForm();
+    const onSubmit = (data) => console.log(data);
 
-    let handleSubmit = (event) => {
+    //fetch to our server
+    let loginSubmit = (event) => {
         event.preventDefault();
         let newURL = `${props.url}/user/login`;
 
@@ -32,14 +38,14 @@ const Login = (props) => {
             <Modal isOpen={props.login} toggle={props.toggleLogin} className='Modal' external={externalCloseBtn}>
                 <ModalHeader style={{color: "#292929"}}>Login</ModalHeader>
                 <ModalBody>
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit(onSubmit), loginSubmit}>
                         <FormGroup>
                             <Label htmlFor='username'>Username:</Label>
-                            <Input name='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+                            <Input ref={register({require: true})} name='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
                             </FormGroup>
                         <FormGroup>
                             <Label htmlFor='password'>Password:</Label>
-                            <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <Input ref={register({require: true})} name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </FormGroup>
                         <Button type='submit' onClick={props.toggleLogin} style={{alignContent: "center"}}>Login</Button>{' '}
                     </Form>
