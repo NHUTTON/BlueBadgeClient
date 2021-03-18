@@ -7,7 +7,7 @@ const Login = (props) => {
     const [password, setPassword] = useState('');
     
     //form validation
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, errors} = useForm();
     const onSubmit = (data) => console.log(data);
 
     //fetch to our server
@@ -41,13 +41,14 @@ const Login = (props) => {
                     <Form onSubmit={handleSubmit(onSubmit), loginSubmit}>
                         <FormGroup>
                             <Label htmlFor='username'>Username:</Label>
-                            <Input ref={register({require: true})} name='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
-                            </FormGroup>
+                            <Input ref={register({require: true, minLength: 5})} name="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                            {errors.username && <p>This is required.</p>}
+                        </FormGroup>
                         <FormGroup>
                             <Label htmlFor='password'>Password:</Label>
-                            <Input ref={register({require: true})} name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <Input ref={register({require: true})} name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </FormGroup>
-                        <Button type='submit' onClick={props.toggleLogin} style={{alignContent: "center"}}>Login</Button>{' '}
+                        <Button style={{alignContent: "center"}}>Login</Button>
                     </Form>
                 </ModalBody>
             </Modal>
