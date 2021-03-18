@@ -12,9 +12,9 @@ import Register from  './Register';
 import Logo from '../assets/Logo.png';
 
 const Auth = (props) => {
-
+    console.log('auth:', props);
     const [isOpen, setIsOpen] = useState(false);
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(true);
     const [signUp, setSignUp] = useState(false);
     
 
@@ -25,9 +25,11 @@ const Auth = (props) => {
         setIsOpen(!isOpen);
     }
 
-    const toggleLogin = () => setLogin(!login);
+    const toggleLogin = () => setLogin(true);
+    const toggleLoginOff = () => setLogin(false);
 
-    const toggleSignUp = () => setSignUp(!signUp);
+    const toggleSignUp = () => setSignUp(true);
+    const toggleSignUpOff = () => setSignUp(false);
 
     return(
         <>
@@ -45,8 +47,15 @@ const Auth = (props) => {
                     </Nav>
                 </Collapse>
             </Navbar>
-                    {toggleLogin ? <Login url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} login={login}/> : <></>}
-                    {toggleSignUp ? <Register url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} signUp={signUp}/> : <></>}
+                    {
+                    login 
+                        ? <Login toggleLoginOff={toggleLoginOff} clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} login={login}/> 
+                        : <></>
+                    }
+
+                    {signUp 
+                    ? <Register clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} toggleSignUpOff={toggleSignUpOff} signUp={signUp}/> 
+                    : <></>}
         </>
     )
 }

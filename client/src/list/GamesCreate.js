@@ -22,8 +22,8 @@ const GamesCreate = (props) => {
   //  console.log(image)
   //  console.log(title)
   //  console.log(date)
-   console.log(platform)
-   console.log(genre)
+  //  console.log(platform)
+  //  console.log(genre)
     const mapPlatform =  () => {
       return initPlatform.map((item, index) => {
           return (
@@ -41,7 +41,7 @@ const GamesCreate = (props) => {
     }
 
     const handleSubmit = (e) => {
-      console.log('hi there');
+      // console.log('hi there');
       mapPlatform()
       mapGenre()
       fetch('http://localhost:5002/games/create', {
@@ -62,7 +62,7 @@ const GamesCreate = (props) => {
         console.log('this is nick')
       })
       .then((gameData) => {
-        console.log(gameData)
+        // console.log(gameData)
       })
     }
 
