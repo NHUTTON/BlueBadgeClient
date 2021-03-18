@@ -31,11 +31,11 @@ const Auth = (props) => {
 
     return(
         <>
-            <Navbar color='faded' light expand='md' className='Auth'>
+            <Navbar color='faded' light expand='md' className='Auth' style={{marginTop: "1em"}}>
                 <NavbarBrand><img src={Logo} alt='logo' style={{height: "60px", marginLeft: "4em"}}/></NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className='ml-auto' navbar>
+                    <Nav className='ml-auto' navbar style={{marginRight: "3em"}}>
                         <NavItem>
                             <Button type='click' onClick={toggleLogin} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "2em"}}>LOGIN</Button>
                         </NavItem>
@@ -46,9 +46,7 @@ const Auth = (props) => {
                 </Collapse>
             </Navbar>
                     {toggleLogin ? <Login url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} login={login}/> : <></>}
-
                     {toggleSignUp ? <Register url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} signUp={signUp}/> : <></>}
-
         </>
     )
 }

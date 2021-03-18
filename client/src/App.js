@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
+import {
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom'
 
 import Auth from './auth/Auth'
 import  Index from './list/index'
@@ -47,7 +52,12 @@ function App() {
   return (
     <div>
       {protectedViews()}
+      <Index token={sessionToken} />
+      <br/>
+      <div style={{height: "8vh"}}></div>
+      <br/>
       <Index />
+
       <br/>
       <br/>
       <Footer />
