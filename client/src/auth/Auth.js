@@ -7,7 +7,7 @@ import {Navbar,
     NavItem,
     Button} from 'reactstrap';
 
-import './Auth.css';
+// import './Auth.css';
 
 
 import Login from  './Login';
