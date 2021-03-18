@@ -3,6 +3,7 @@ import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} fr
 // import {useForm} from 'react-hook-form';
 
 const Login = (props) => {
+    console.log('login:', props);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
@@ -15,13 +16,16 @@ const Login = (props) => {
     //fetch to our server
     let loginSubmit = (event) => {
         event.preventDefault();
+
+        props.clearToken();
+
         let newURL = `${props.url}/user/login`;
 
         fetch(newURL, {
             method: 'POST',
             body: JSON.stringify({user: {username: username, password: password}}),
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             })
         })
             .then((res) => res.json())
@@ -40,17 +44,17 @@ const Login = (props) => {
             <Modal isOpen={props.login} toggle={props.toggleLogin} className='Modal' external={externalCloseBtn}>
                 <ModalHeader style={{color: "#292929"}}>Login</ModalHeader>
                 <ModalBody>
-                    <Form onSubmit={loginSubmit}>
+                    <form onSubmit={loginSubmit}>
                         <FormGroup>
-                            <Label htmlFor='username'>Username:</Label>
-                            <Input name='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
-                            </FormGroup>
+                            <label htmlFor='username'>Username:</label>
+                            <input name='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+                        </FormGroup>
                         <FormGroup>
-                            <Label htmlFor='password'>Password:</Label>
-                            <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <label htmlFor='password'>Password:</label>
+                            <input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </FormGroup>
                         <Button style={{alignContent: "center"}}>Login</Button>
-                    </Form>
+                    </form>
                 </ModalBody>
             </Modal>
         </div>

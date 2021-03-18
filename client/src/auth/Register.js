@@ -28,10 +28,10 @@ const Register = (props) => {
     //     }
     // }
 
-    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color: "white" }} onClick={props.toggleSignUp}>&times;</button>;
+    const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color: "white" }} onClick={props.toggleSignUpOff}>&times;</button>;
 
     return(
-        <Modal isOpen={props.signUp} toggle={props.toggleSignUp} external={externalCloseBtn} className='Modal'>
+        <Modal isOpen={true} toggle={props.toggleSignUp} external={externalCloseBtn} className='Modal'>
             <ModalHeader style={{color: "black"}}>Sign Up</ModalHeader>
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
@@ -45,7 +45,7 @@ const Register = (props) => {
                         <Input name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         <p><i>Password must be 5 or more characters.</i></p>
                     </FormGroup>
-                    <Button type='submit' onClick={props.toggleSignUp}>Create Account</Button>
+                    <Button type='submit'>Create Account</Button>
                 </Form>
             </ModalBody>
         </Modal>

@@ -25,7 +25,7 @@ function App() {
     this runs to update sessiontoken to the token found in local storage
   */
   useEffect(() => { //if a session token exists in local storage, set the sessionToken to that value so it can be passed down as a prop
-    if (localStorage.getItem('token') !== undefined) {
+    if (localStorage.getItem('token') && localStorage.getItem('token') !== undefined) {
       setSessionToken(localStorage.getItem('token'));
     }
   }, []);
@@ -42,12 +42,16 @@ function App() {
   //this is the Logout functionality
   const clearToken = () =>  {
     localStorage.clear();
+    console.log('local storage', localStorage.getItem('token'));
     setSessionToken('');
+    console.log('after clear token:', sessionToken);
   }
 
   const protectedViews = () => {
-    return (localStorage.getItem('token') ?
-    <TopBar clickLogout={clearToken}/> : <Auth url={url} updateToken={updateToken}/>)
+    return ( 
+    sessionToken === localStorage.getItem('token') ?
+    <TopBar clearToken={clearToken}/> : <Auth clearToken={clearToken} url={url} updateToken={updateToken}/>
+    )
   }
 
   return (
