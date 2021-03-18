@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, CardText, CardImg, CardHeader, Container, Row, Col} from 'reactstrap';
-import GamesDisplay from './GamesCreate'
+import GamesCreate from './GamesCreate'
 import GamesTable from './GamesTable'
+
 
 const ApiFetch = (props) => {
     const [search, setSearch] = useState('');
@@ -31,19 +32,21 @@ console.log(results)
                 <CardHeader className='cardHeader'>{game.name}</CardHeader>
                 <CardImg top width="100%" className='cardImage' src={game.background_image} alt="Card image cap" />
                 <CardBody>
-                    <CardTitle tag="h5">Released:<br/>{game.released}</CardTitle>
+                    <CardTitle tag="h5" className="cardTitleh5">Released:<br/>{game.released}</CardTitle>
                     <CardText>
                         <p className="genres">Genres:  
                         {
                             game.genres.map((genre, index) => {
+                              if (index <2) {
                                 return (
-                                    <> {genre.name} </>
+                                    <> | {genre.name} | </>
                                 )
+                              }
                             })
                         }
                         </p>
                     </CardText>
-                    <CardText>
+                    <CardText style={{marginBottom:"1em"}}>
                       <p className="platforms">
                         Platforms: 
                         {
@@ -51,13 +54,13 @@ console.log(results)
                             ? game.platforms.map((platform, index) => {
                               let currentPlat = platform.platform.name;
                               if (currentPlat.includes('Xbox') || currentPlat.includes('PC') || currentPlat.includes('Playstation') || currentPlat.includes('Nintendo') || currentPlat.includes('Wii') || currentPlat.includes('Genesis') || currentPlat.includes('Android')) {
-                                if (index !== 0){
+                                if (index < 2){
                                   return (
-                                    <> {currentPlat},</>
+                                    <> | {currentPlat} |</>
                                   )
                                 } else {
                                   return (
-                                    <> {currentPlat},</>
+                                    <> | {currentPlat} |</>
                                   )
                                 }
                               }
@@ -67,7 +70,7 @@ console.log(results)
                       </p>
                     </CardText>
                 </CardBody>
-           <GamesDisplay game={game} />
+           <GamesCreate game={game} />
         </Card>
         </div>
             )
@@ -80,9 +83,9 @@ console.log(results)
     
     return (
         <div>
-            <Form >
+            <Form className="searchForm">
                 <FormGroup>
-                    <Label style={{display:"block", textAlign:"center"}}>SEARCH FOR YOUR FAVORITE <br/>GAMES! </Label>
+                    <Label className="searchLabel" style={{display:"block", textAlign:"center"}}>SEARCH FOR YOUR FAVORITE <br/>GAMES! </Label>
                         <Input className="inputField" placeholder="Search" style={{width:"45em", marginTop:"2em"}} name='search' value={search} onChange={(e) => setSearch(e.target.value)}/>
                 </FormGroup>
             </Form>
