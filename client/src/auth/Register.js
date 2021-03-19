@@ -1,6 +1,6 @@
-
 import React, {useState} from 'react';
 import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import APIURL from '../helpers/environment'
 
 const Register = (props) => {
     const [username, setUsername] = useState('');
@@ -9,24 +9,36 @@ const Register = (props) => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        let newURL = `${props.url}/user/register`;
-        fetch(newURL, {
-            method:'POST',
-            body: JSON.stringify({user: {username: username, password: password}}),
-            headers: new Headers({
-                'Content-Type': 'application/json'
+        if (password === "" || username.length < 4 || !username.match(props.format)){
+            alert('Your username and password need to meet the requirements.')
+        } else {
+            props.clearToken();
+
+            let newURL = `${APIURL}/user/register`;
+
+            fetch(newURL, {
+                method:'POST',
+                body: JSON.stringify({user: {username: username, password: password}}),
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
             })
-        })
-            .then((res) => res.json())
-            .then((data) => props.updateToken(data.sessionToken));
+                .then((res) => res.json())
+                .then((data) => {
+                    alert(data.message)
+                    props.updateToken(data.sessionToken);
+                });
+        }
     }
 
     //this conditional checks for special characters is in the username and password
-    // const modalToggle = () => {
-    //     if (username.match(props.format) && username.length > 4 && password.length > 5) {
-    //         setIsOpen(!isOpen);
-    //     }
-    // }
+    const modalToggle = () => {
+        if (username.match(props.format) && username.length > 4 && password.length > 5) {
+            props.toggleSignUpOff();
+        } else {
+            console.log("Error: username or password is incorrect")
+        }
+    }
 
     const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color: "white" }} onClick={props.toggleSignUpOff}>&times;</button>;
 
