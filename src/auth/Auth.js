@@ -13,7 +13,7 @@ import Logo from '../assets/Logo.png';
 
 const Auth = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(true);
     const [signUp, setSignUp] = useState(false);
     
 
@@ -50,7 +50,6 @@ const Auth = (props) => {
                         ? <Login clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} toggleLoginOff={toggleLoginOff} login={login}/> 
                         : <></>
                     }
-
                     {signUp 
                     ? <Register clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} toggleSignUpOff={toggleSignUpOff} signUp={signUp} format={format}/> 
                     : <></>}
