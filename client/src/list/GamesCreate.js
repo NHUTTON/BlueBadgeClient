@@ -49,7 +49,7 @@ const GamesCreate = (props) => {
       // console.log('hi there');
       mapPlatform()
       mapGenre()
-      fetch(`${APIURL}`, {
+      fetch(`${APIURL}/games/create`, {
         method: 'POST',
         body: JSON.stringify({game: {
           image: image, 
