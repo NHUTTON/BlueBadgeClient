@@ -10,8 +10,12 @@ import {
 } from 'reactstrap';
 import Logo from '../assets/Logo.png';
 
+
 const TopBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [games, setGames] = useState('')
+    let secret = `Bearer ${props.token}`;
+    console.log(props, "topBar.js")
 
     const toggle = () => {
         setIsOpen(!isOpen);

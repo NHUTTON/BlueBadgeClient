@@ -8,6 +8,7 @@ import ApiFetch from './ApiRequest'
 import GamesTable from './GamesTable'
 
 const Index = (props) => {
+    console.log(props, "index.js")
 const [games, setGames] = useState('')
  let secret = `Bearer ${props.token}`;
 
@@ -27,8 +28,9 @@ const [games, setGames] = useState('')
 
     return(
         <div>
-            <ApiFetch token={secret} />
-            {/* <GamesTable fetchGames={fetchGames} games={games} token={secret} /> */}
+
+            <ApiFetch token={secret} url={props.url} games={games} fetchGames={fetchGames}  />
+            {/* <GamesTable fetchGames={fetchGames} games={games} token={secret} url={props.url} /> */}
             {/* <ListCreate />
             <ListEdit /> */}
             {/* <List /> */}

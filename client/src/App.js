@@ -15,7 +15,6 @@ function App() {
   document.body.style = 'background: #292929'
   const url = 'http://localhost:5002'
 
-  const baseURL = `http://localhost:${process.env.REACT_SERVER_PORT}`
   const [activeList, setActiveList] = useState(0);
   const [sessionToken, setSessionToken] = useState(''); 
 
@@ -49,14 +48,14 @@ function App() {
   const protectedViews = () => {
     return ( 
     sessionToken === localStorage.getItem('token') ?
-    <TopBar clearToken={clearToken}/> : <Auth clearToken={clearToken} url={url} updateToken={updateToken}/>
+    <TopBar clearToken={clearToken} token={sessionToken} url={url}/> : <Auth clearToken={clearToken} updateToken={updateToken} token={sessionToken} url={url}/>
     )
   }
 
   return (
     <div>
       {protectedViews()}
-      <Index token={sessionToken} />
+      <Index token={sessionToken} url={url}/>
       <br/>
       <div style={{height: "8vh"}}></div>
       <br/>
