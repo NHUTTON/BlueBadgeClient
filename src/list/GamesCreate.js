@@ -9,7 +9,6 @@ import APIURL from '../helpers/environment'
 
  */
 const GamesCreate = (props) => {
-  console.log(props)
     const [image, setImage] = useState("")
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
@@ -24,20 +23,15 @@ const GamesCreate = (props) => {
    // console.log(initPlatform)
  
 
-   console.log(image)
-   console.log(title)
-   console.log(date)
-   console.log(platform)
-   console.log(genre)
 
     const mapPlatform =  () => {
       return initPlatform.map(item => setPlatform([...initPlatform, item.platform.name]))}
-      console.log(initPlatform)
+
 
     const mapGenre =  () => {
       return initGenre.map(item => setGenre([...initGenre, item.name]))}
 
-    useEffect(() => {
+    useEffect(() => {  // HERE I AM ACCESSING THE PROPS OBJECT PASSED FROM THE API REQUEST AND PULLING OUT THE INOFRMATION THAT I NEED.
         setImage(props.game.background_image);
         setTitle(props.game.name);
         setDate(props.game.released);

@@ -4,16 +4,16 @@ import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} fr
 import APIURL from '../helpers/environment'
 
 const Login = (props) => {
-    console.log('login:', props);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
-    //form validation
 
-    // const {register, handleSubmit} = useForm();
-    // const onSubmit = (data) => console.log(data);
 
-    //fetch to our server
+    /*
+
+    This is the client side login function that is fetching to the server and grabbing our session token. this is supplying our session token by using the prop passed from the Auth component, updateToken(). this grabs the data from our server and supplies a session token with the word Bearer supplied. 
+    
+    */ 
     let loginSubmit = (event) => {
         event.preventDefault();
 
@@ -22,7 +22,7 @@ if(password === "" || username.length < 4){
 }else {
     props.clearToken();
 
-    let newURL = `${props.url}/user/login`;
+    let newURL = `${APIURL}/user/login`;  
 
     fetch(newURL, {
         method: 'POST',
@@ -49,7 +49,7 @@ if(password === "" || username.length < 4){
         //     })
         })
 }
-    }
+    } //here we utilize the toggleLoginOff prop passed from Auth.js and use it "onClick"
 const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color:"white" }} onClick={props.toggleLoginOff}>&times;</button>;
 
 

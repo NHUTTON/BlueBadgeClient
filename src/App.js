@@ -35,7 +35,7 @@ function App() {
   const updateToken = (newToken) => {
     localStorage.setItem('token', newToken);
     setSessionToken(newToken);
-    // console.log(sessionToken);
+    console.log(sessionToken);
   }
   //this is the Logout functionality
   const clearToken = () =>  {

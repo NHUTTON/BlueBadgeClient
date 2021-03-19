@@ -12,7 +12,6 @@ import Register from  './Register';
 import Logo from '../assets/Logo.png';
 
 const Auth = (props) => {
-    console.log('auth:', props);
     const [isOpen, setIsOpen] = useState(false);
     const [login, setLogin] = useState(false);
     const [signUp, setSignUp] = useState(false);
@@ -32,11 +31,11 @@ const Auth = (props) => {
 
     return(
         <>
-            <Navbar color='faded' light expand='md' className='Auth' style={{marginTop: "1em"}}>
-                <NavbarBrand><img src={Logo} alt='logo' style={{height: "60px", marginLeft: "4em"}}/></NavbarBrand>
+     <Navbar color='faded' light expand='md' className='Auth' style={{marginTop: "1em"}}>
+                <NavbarBrand><img src={Logo} alt='logo' style={{height: "80px", marginLeft: "4em"}}/></NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className='ml-auto' navbar style={{marginRight: "3em"}}>
+                    <Nav className='ml-auto' navbar style={{marginRight: "4em"}}>
                         <NavItem>
                             <Button type='click' onClick={toggleLogin} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "2em"}}>LOGIN</Button>
                         </NavItem>
@@ -46,7 +45,7 @@ const Auth = (props) => {
                     </Nav>
                 </Collapse>
             </Navbar>
-                    {
+                    { // multiple props being passed here but ill highlight one, we are passing the toggleLoginOff function  at the top of the page, as a prop.
                     login 
                         ? <Login clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} toggleLoginOff={toggleLoginOff} login={login}/> 
                         : <></>

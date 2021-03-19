@@ -22,13 +22,13 @@ const TopBar = (props) => {
     }
 
     return (
-        <Navbar color='faded' light expand='md'>
-            <NavbarBrand><img src={Logo} alt='logo' style={{height: "60px", marginLeft: "4em"}}/></NavbarBrand>
+<Navbar color='faded' light expand='md'>
+            <NavbarBrand><img src={Logo} alt='logo' style={{height: "80px", marginLeft: "4em"}}/></NavbarBrand>
             <NavbarToggler onClick={toggle}/>
             <Collapse isOpen={isOpen} navbar>
                 <Nav className='ml-auto' navbar>
                     <NavItem>
-                        <Button onClick={props.clearToken} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "2em"}}>LOGOUT</Button>
+                        <Button onClick={props.clearToken} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "4em"}}>LOGOUT</Button>
                     </NavItem>
                 </Nav>
             </Collapse>

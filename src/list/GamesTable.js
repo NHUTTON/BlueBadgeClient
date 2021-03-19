@@ -23,12 +23,10 @@ import {
 import APIURL from '../helpers/environment'
 
 const GamesTable = (props) => {
-    console.log(props, "GamesTable.js")
   const [gamesList, setGamesList] = useState([]);
-  console.log(gamesList);
 
 //   const deleteTable = (game) => {
-//     fetch(`http://localhost:5002/games/delete${game}`, {
+//     fetch(`http://localhost:5002/games/delete/${game}`, {
 //       method: "DELETE",
 //       headers: new Headers({
 //         "Content-Type": "application/json",
@@ -39,7 +37,7 @@ const GamesTable = (props) => {
 
   const fetchGames = (e) => {
     e.preventDefault();
-    let url = 'http://localhost:5002/games/mine';
+    let url = `${APIURL}/games/mine`;
     // let url = props.baseURL + "/games/mine";
     fetch(url, {
       method: "GET",
@@ -80,7 +78,7 @@ const GamesTable = (props) => {
                 <br />
                 {games.date}
               </CardTitle>
-              <CardText>
+              {/* <CardText>
                 <p className="genres">
                   Genres:
                     {games.genres}
@@ -91,7 +89,7 @@ const GamesTable = (props) => {
                   Platforms:
                     {games.platform}
                 </p>
-              </CardText>
+              </CardText> */}
             </CardBody>
           </Card>
         </div>
