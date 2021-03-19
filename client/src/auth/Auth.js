@@ -7,15 +7,12 @@ import {Navbar,
     NavItem,
     Button} from 'reactstrap';
 
-import './Auth.css';
-
-
 import Login from  './Login';
 import Register from  './Register';
 import Logo from '../assets/Logo.png';
 
 const Auth = (props) => {
-
+    console.log('auth:', props);
     const [isOpen, setIsOpen] = useState(false);
     const [login, setLogin] = useState(false);
     const [signUp, setSignUp] = useState(false);
@@ -23,22 +20,23 @@ const Auth = (props) => {
 
     const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~1234567890]/;
 
-
     const toggle = () => {
         setIsOpen(!isOpen);
     }
 
-    const toggleLogin = () => setLogin(!login);
+    const toggleLogin = () => setLogin(true);
+    const toggleLoginOff = () => setLogin(false);
 
-    const toggleSignUp = () => setSignUp(!signUp);
+    const toggleSignUp = () => setSignUp(true);
+    const toggleSignUpOff = () => setSignUp(false);
 
     return(
         <>
-            <Navbar color='faded' light expand='md' className='Auth'>
+            <Navbar color='faded' light expand='md' className='Auth' style={{marginTop: "1em"}}>
                 <NavbarBrand><img src={Logo} alt='logo' style={{height: "60px", marginLeft: "4em"}}/></NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className='ml-auto' navbar>
+                    <Nav className='ml-auto' navbar style={{marginRight: "3em"}}>
                         <NavItem>
                             <Button type='click' onClick={toggleLogin} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "2em"}}>LOGIN</Button>
                         </NavItem>
@@ -48,10 +46,15 @@ const Auth = (props) => {
                     </Nav>
                 </Collapse>
             </Navbar>
-                    {toggleLogin ? <Login url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} login={login}/> : <></>}
+                    {
+                    login 
+                        ? <Login clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} toggleLoginOff={toggleLoginOff} login={login}/> 
+                        : <></>
+                    }
 
-                    {toggleSignUp ? <Register url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} signUp={signUp}/> : <></>}
-
+                    {signUp 
+                    ? <Register clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} toggleSignUpOff={toggleSignUpOff} signUp={signUp} format={format}/> 
+                    : <></>}
         </>
     )
 }

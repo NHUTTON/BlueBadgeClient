@@ -1,43 +1,72 @@
 import React, {useState, useEffect} from 'react';
 import { Media, Button, Form } from 'reactstrap';
 import GamesTable from './GamesTable'
+
+import APIURL from '../helpers/environment'
  /*
 
  This is submitting data from the API to the data base
 
  */
 const GamesCreate = (props) => {
-    const [image, setImage] = useState('')
-    const [title, setTitle] = useState(props.game.name);
-    const [date, setDate] = useState(props.game.released);
-    const [genre, setGenre] = useState([props.game.genres]);
-    const [platform, setPlatform] = useState([props.game.platfroms]);
+  console.log(props)
+    const [image, setImage] = useState("")
+    const [title, setTitle] = useState("");
+    const [date, setDate] = useState("");
+    const [initGenre, setInitGenre] = useState([]);
+    const [initPlatform, setInitPlatform] = useState([]);
     const [object, setObject] = useState(props.game)
-    console.log(object)
+
+    const [platform, setPlatform] = useState([]);
+    const [genre, setGenre] = useState([]);
+
+    // console.log(object)
+   // console.log(initPlatform)
+ 
+   console.log(image)
+   console.log(title)
+   console.log(date)
+   console.log(platform)
+   console.log(genre)
 
     const mapPlatform =  () => {
-      let object = props.game
-      return object.map((item, index) => {
-        console.log(item.platform)
-          return (
-              item.platform.name
-          )
-      })
-    }
+      return initPlatform.map(item => setPlatform([...initPlatform, item.platform.name]))}
+      console.log(initPlatform)
+
+    const mapGenre =  () => {
+      return initGenre.map(item => setGenre([...initGenre, item.name]))}
+
+    useEffect(() => {
+        setImage(props.game.background_image);
+        setTitle(props.game.name);
+        setDate(props.game.released);
+        // setInitGenre(props.game.genres);
+        // setInitPlatform(props.game.platforms)
+    }, []);
 
     const handleSubmit = (e) => {
-      e.preventDefault();
-      fetch('http://localhost:5002/games/create', {
+      console.log('hi there');
+      mapPlatform()
+      mapGenre()
+      fetch(`${APIURL}`, {
         method: 'POST',
-        body: JSON.stringify({game: {image: image, title: title, date: date, genre: genre, platform: platform}}),
+        body: JSON.stringify({game: {
+          image: image, 
+          title: title, 
+          date: date, 
+          genre: genre, 
+          platform: platform,
+        }}),
         headers: new Headers({
           'Content-Type': 'application/json',
           'Authorization': props.token
         })
-      }).then((res) => res.json())
+      }).then(res =>{
+        console.log('hi nick')
+        return res.json()
+      })
       .then((gameData) => {
         console.log(gameData)
-        mapPlatform()
       })
     }
 
