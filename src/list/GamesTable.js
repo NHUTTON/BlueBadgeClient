@@ -28,7 +28,7 @@ const GamesTable = (props) => {
   console.log(gamesList);
 
   const deleteTable = (game) => {
-    fetch(`http://localhost:5002/games/delete${game}`, {
+    fetch(`http://localhost:5002/games/delete/${game}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -37,8 +37,8 @@ const GamesTable = (props) => {
     }).then(() => props.fetchGames());
   };
 
-  const fetchGames = (e) => {
-    e.preventDefault();
+  const fetchList = (e) => {
+    // e.preventDefault();
     let url = 'http://localhost:5002/games/mine';
     // let url = props.baseURL + "/games/mine";
     fetch(`${props.url}/games/mine`, {
@@ -106,7 +106,7 @@ const GamesTable = (props) => {
       <Container className="parentContainer" style={{ paddingTop: "3em" }}>
       <Label className="listHeader" style={{display:"block", fontSize: "2em",textAlign:"center", textShadow: "4px 4px #121212", color: "#03DAC6"}}>Your Favorite Games List</Label>
       <hr />
-          <Button className="listButton" onClick={fetchGames} style={{color: "black", backgroundColor: "#BB86FC"}}>View favorites list</Button>
+          <Button className="listButton" onClick={fetchList} style={{color: "black", backgroundColor: "#BB86FC"}}>View favorites list</Button>
         <Row className="divCont">{gameMapper()}</Row>
       </Container>
     </>
