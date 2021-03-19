@@ -86,7 +86,7 @@ const ApiFetch = (props) => {
     
     return (
         <div>
-          <GamesTable token={props.token}/>
+          <GamesTable token={props.token} url={props.url} fetchGames={props.fetchGames}/>
             <Form className="searchForm">
                 <FormGroup>
                     <Label className="searchLabel" style={{display:"block", fontSize: "3.2em",textAlign:"center", textShadow: "4px 4px #121212"}}><i>SEARCH FOR YOUR FAVORITE<br/>GAMES!</i></Label>

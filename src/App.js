@@ -15,8 +15,8 @@ import Footer from './footer/footer';
 
 function App() {  
   document.body.style = 'background: #292929'
+  
   const url = `${APIURL}`
-
   const [activeList, setActiveList] = useState(0);
   const [sessionToken, setSessionToken] = useState(''); 
 

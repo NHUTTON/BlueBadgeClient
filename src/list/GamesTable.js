@@ -27,21 +27,21 @@ const GamesTable = (props) => {
   const [gamesList, setGamesList] = useState([]);
   console.log(gamesList);
 
-//   const deleteTable = (game) => {
-//     fetch(`http://localhost:5002/games/delete${game}`, {
-//       method: "DELETE",
-//       headers: new Headers({
-//         "Content-Type": "application/json",
-//         Authorization: props.token,
-//       }),
-//     }).then(() => props.fetchGames());
-//   };
+  const deleteTable = (game) => {
+    fetch(`http://localhost:5002/games/delete/${game}`, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: props.token,
+      }),
+    }).then(() => props.fetchGames());
+  };
 
-  const fetchGames = (e) => {
-    e.preventDefault();
+  const fetchList = (e) => {
+    // e.preventDefault();
     let url = 'http://localhost:5002/games/mine';
     // let url = props.baseURL + "/games/mine";
-    fetch(url, {
+    fetch(`${props.url}/games/mine`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -93,6 +93,7 @@ const GamesTable = (props) => {
                 </p>
               </CardText>
             </CardBody>
+            <Button color="danger" onClick={deleteTable} game={games}>Delete from my list</Button>
           </Card>
         </div>
       );
@@ -105,7 +106,7 @@ const GamesTable = (props) => {
       <Container className="parentContainer" style={{ paddingTop: "3em" }}>
       <Label className="listHeader" style={{display:"block", fontSize: "2em",textAlign:"center", textShadow: "4px 4px #121212", color: "#03DAC6"}}>Your Favorite Games List</Label>
       <hr />
-          <Button className="listButton" onClick={fetchGames} style={{color: "black", backgroundColor: "#BB86FC"}}>View favorites list</Button>
+          <Button className="listButton" onClick={fetchList} style={{color: "black", backgroundColor: "#BB86FC"}}>View favorites list</Button>
         <Row className="divCont">{gameMapper()}</Row>
       </Container>
     </>
