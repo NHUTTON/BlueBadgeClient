@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Media, Button, Form } from 'reactstrap';
 import GamesTable from './GamesTable'
+
+import APIURL from '../helpers/environment'
  /*
 
  This is submitting data from the API to the data base
@@ -46,7 +48,7 @@ const GamesCreate = (props) => {
       console.log('hi there');
       mapPlatform()
       mapGenre()
-      fetch('http://localhost:5002/games/create', {
+      fetch(`${APIURL}`, {
         method: 'POST',
         body: JSON.stringify({game: {
           image: image, 

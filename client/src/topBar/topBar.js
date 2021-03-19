@@ -24,7 +24,7 @@ const TopBar = (props) => {
             <Collapse isOpen={isOpen} navbar>
                 <Nav className='ml-auto' navbar>
                     <NavItem>
-                        <Button onClick={props.clickLogout} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "2em"}}>LOGOUT</Button>
+                        <Button onClick={props.clearToken} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "2em"}}>LOGOUT</Button>
                     </NavItem>
                 </Nav>
             </Collapse>
