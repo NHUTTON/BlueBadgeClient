@@ -102,10 +102,10 @@ const GamesTable = (props) => {
 
   return (
     <>
-      <h3 className="listHeader">Your Favorite Games</h3>
+      <Container className="parentContainer" style={{ paddingTop: "3em" }}>
+      <Label className="listHeader" style={{display:"block", fontSize: "2em",textAlign:"center", textShadow: "4px 4px #121212", color: "#03DAC6"}}>Your Favorite Games List</Label>
       <hr />
-      <Container style={{ paddingTop: "3em" }}>
-          <Button onClick={fetchGames}>View my list</Button>
+          <Button className="listButton" onClick={fetchGames} style={{color: "black", backgroundColor: "#BB86FC"}}>View favorites list</Button>
         <Row className="divCont">{gameMapper()}</Row>
       </Container>
     </>

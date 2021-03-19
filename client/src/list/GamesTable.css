@@ -1,3 +1,9 @@
 .listHeader{
     color: white;
+    text-align: center;
+}
+
+.parentContainer{
+    text-align: center;
+    padding: 5em;
 }

@@ -22,7 +22,7 @@ if(password === "" || username.length < 4){
 }else {
     props.clearToken();
 
-    let newURL = `${APIURL}/user/login`;
+    let newURL = `${props.url}/user/login`;
 
     fetch(newURL, {
         method: 'POST',
@@ -37,19 +37,19 @@ if(password === "" || username.length < 4){
             alert(data.message);
             props.updateToken(data.sessionToken);
 
-        props.clearToken();
+        // props.clearToken();
 
-        let newURL = `${props.url}/user/login`;
+        // let newURL = `${props.url}/user/login`;
 
-        fetch(newURL, {
-            method: 'POST',
-            body: JSON.stringify({user: {username: username, password: password}}),
-            headers: new Headers({
-                'Content-Type': 'application/json',
-            })
+        // fetch(newURL, {
+        //     method: 'POST',
+        //     body: JSON.stringify({user: {username: username, password: password}}),
+        //     headers: new Headers({
+        //         'Content-Type': 'application/json',
+        //     })
         })
 }
-}
+    }
 const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color:"white" }} onClick={props.toggleLoginOff}>&times;</button>;
 
 
