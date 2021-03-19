@@ -27,21 +27,21 @@ const GamesTable = (props) => {
   const [gamesList, setGamesList] = useState([]);
   console.log(gamesList);
 
-//   const deleteTable = (game) => {
-//     fetch(`http://localhost:5002/games/delete${game}`, {
-//       method: "DELETE",
-//       headers: new Headers({
-//         "Content-Type": "application/json",
-//         Authorization: props.token,
-//       }),
-//     }).then(() => props.fetchGames());
-//   };
+  const deleteTable = (game) => {
+    fetch(`http://localhost:5002/games/delete${game}`, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: props.token,
+      }),
+    }).then(() => props.fetchGames());
+  };
 
   const fetchGames = (e) => {
     e.preventDefault();
     let url = 'http://localhost:5002/games/mine';
     // let url = props.baseURL + "/games/mine";
-    fetch(url, {
+    fetch(`${props.url}/games/mine`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -93,6 +93,7 @@ const GamesTable = (props) => {
                 </p>
               </CardText>
             </CardBody>
+            <Button color="danger" onClick={deleteTable} game={games}>Delete from my list</Button>
           </Card>
         </div>
       );
