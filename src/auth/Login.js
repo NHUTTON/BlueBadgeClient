@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 // import {useForm} from 'react-hook-form';
 import APIURL from '../helpers/environment'
- 
+
 const Login = (props) => {
     console.log('login:', props);
     const [username, setUsername] = useState('');
@@ -16,12 +16,13 @@ const Login = (props) => {
     //fetch to our server
     let loginSubmit = (event) => {
         event.preventDefault();
+
 if(password === "" || username.length < 4){
     alert('Your username and password need to be filled in correctly.')
 }else {
     props.clearToken();
 
-    let newURL = `${APIURL}/user/login`;
+    let newURL = `${props.url}/user/login`;
 
     fetch(newURL, {
         method: 'POST',
@@ -35,11 +36,22 @@ if(password === "" || username.length < 4){
             console.log(data);
             alert(data.message);
             props.updateToken(data.sessionToken);
-        })
 
+        // props.clearToken();
+
+        // let newURL = `${props.url}/user/login`;
+
+        // fetch(newURL, {
+        //     method: 'POST',
+        //     body: JSON.stringify({user: {username: username, password: password}}),
+        //     headers: new Headers({
+        //         'Content-Type': 'application/json',
+        //     })
+        })
 }
-}
+    }
 const externalCloseBtn = <button className="close" style={{ position: 'absolute', top: '15px', right: '15px', color:"white" }} onClick={props.toggleLoginOff}>&times;</button>;
+
 
 return(
     <Modal isOpen={true} toggle={props.toggleLogin} modalClassName='modal-class' external={externalCloseBtn} style={{backgroundColor: "#121212"}}>

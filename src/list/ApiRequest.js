@@ -13,6 +13,10 @@ const ApiFetch = (props) => {
     const [date, setDate] = useState('');
     const [genre, setGenre] = useState([]);
     const [platform, setPlatform] = useState([]);
+
+    const something = {
+
+    }
     
 // console.log(results)
     const fetchApi = () => {
@@ -82,11 +86,12 @@ const ApiFetch = (props) => {
     
     return (
         <div>
+          <GamesTable token={props.token}/>
             <Form className="searchForm">
                 <FormGroup>
                     <Label className="searchLabel" style={{display:"block", fontSize: "3.2em",textAlign:"center", textShadow: "4px 4px #121212"}}><i>SEARCH FOR YOUR FAVORITE<br/>GAMES!</i></Label>
                     <div style={{height: "8vh"}}></div>
-                        <Input className="inputField" placeholder="Search" style={{width:"45em", marginTop:"2em", fontStyle: "italic", color: "#A0A0A0", backgroundColor: "#121212", borderRadius: "100px", border: "none"}} name='search' value={search} onChange={(e) => setSearch(e.target.value)}/>
+                        <Input className="inputField" placeholder="Search" style={{width:"45em", marginTop:"2em"}} name='search' value={search} onChange={(e) => setSearch(e.target.value)}/>
                 </FormGroup>
             </Form>
             <Container style={{paddingTop:"3em",}}>
