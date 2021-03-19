@@ -13,10 +13,6 @@ const ApiFetch = (props) => {
     const [date, setDate] = useState('');
     const [genre, setGenre] = useState([]);
     const [platform, setPlatform] = useState([]);
-
-    const something = {
-
-    }
     
 // console.log(results)
     const fetchApi = () => {

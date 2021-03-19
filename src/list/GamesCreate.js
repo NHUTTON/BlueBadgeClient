@@ -23,15 +23,15 @@ const GamesCreate = (props) => {
     // console.log(object)
    // console.log(initPlatform)
  
-   console.log(image)
-   console.log(title)
-   console.log(date)
-   console.log(platform)
-   console.log(genre)
+  //  console.log(image)
+  //  console.log(title)
+  //  console.log(date)
+  //  console.log(platform)
+  //  console.log(genre)
 
     const mapPlatform =  () => {
       return initPlatform.map(item => setPlatform([...initPlatform, item.platform.name]))}
-      console.log(initPlatform)
+      // console.log(initPlatform)
 
     const mapGenre =  () => {
       return initGenre.map(item => setGenre([...initGenre, item.name]))}
@@ -43,12 +43,12 @@ const GamesCreate = (props) => {
         // setInitGenre(props.game.genres);
         // setInitPlatform(props.game.platforms)
     }, []);
-
+    
     const handleSubmit = (e) => {
-      console.log('hi there');
+      console.log(props.token)
       mapPlatform()
       mapGenre()
-      fetch(`${APIURL}`, {
+      fetch(`${APIURL}/games/create`, {
         method: 'POST',
         body: JSON.stringify({game: {
           image: image, 

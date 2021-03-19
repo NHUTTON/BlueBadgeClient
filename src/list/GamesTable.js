@@ -2,7 +2,6 @@ import React from 'react';
 import {Table, Button} from 'reactstrap';
 
 import APIURL from '../helpers/environment'
-
 const GamesTable = (props) => {
     const deleteTable = (game) => {
         fetch(`${APIURL}/games/delete${game}`, {
@@ -14,7 +13,8 @@ const GamesTable = (props) => {
         })
         .then(() => props.fetchGames())
     }
-
+    
+    console.log(props.token)
     const gameMapper = () => {
         return props.game.map((game, index) => {
             return(

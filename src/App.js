@@ -60,7 +60,7 @@ function App() {
       <br/>
       <div style={{height: "8vh"}}></div>
       <br/>
-      <Index />
+      <Index token={sessionToken} url={url} />
       <br/>
       <br/>
       <Footer />
