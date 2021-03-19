@@ -20,7 +20,6 @@ const Auth = (props) => {
 
     const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~1234567890]/;
 
-
     const toggle = () => {
         setIsOpen(!isOpen);
     }
@@ -49,12 +48,11 @@ const Auth = (props) => {
             </Navbar>
                     {
                     login 
-                        ? <Login toggleLoginOff={toggleLoginOff} clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} login={login}/> 
+                        ? <Login clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} toggleLoginOff={toggleLoginOff} login={login}/> 
                         : <></>
                     }
-
                     {signUp 
-                    ? <Register clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} toggleSignUpOff={toggleSignUpOff} signUp={signUp}/> 
+                    ? <Register clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} toggleSignUpOff={toggleSignUpOff} signUp={signUp} format={format}/> 
                     : <></>}
         </>
     )

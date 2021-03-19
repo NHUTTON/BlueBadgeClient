@@ -6,6 +6,8 @@ import {
   Switch
 } from 'react-router-dom'
 
+import APIURL from './helpers/environment'
+
 import Auth from './auth/Auth'
 import  Index from './list/index'
 import TopBar from './topBar/topBar'
@@ -13,11 +15,10 @@ import Footer from './footer/footer';
 
 function App() {  
   document.body.style = 'background: #292929'
-  const url = 'http://localhost:5002'
+  const url = `${APIURL}`
 
   const [activeList, setActiveList] = useState(0);
   const [sessionToken, setSessionToken] = useState(''); 
-
 
   /*
     this runs to update sessiontoken to the token found in local storage
@@ -36,7 +37,6 @@ function App() {
     setSessionToken(newToken);
     // console.log(sessionToken);
   }
-  
   //this is the Logout functionality
   const clearToken = () =>  {
     localStorage.clear();
@@ -59,8 +59,7 @@ function App() {
       <br/>
       <div style={{height: "8vh"}}></div>
       <br/>
-      {/* <Index /> */}
-
+      <Index />
       <br/>
       <br/>
       <Footer />
@@ -68,4 +67,4 @@ function App() {
   )
 }
 
-export default App;
+export default App;  

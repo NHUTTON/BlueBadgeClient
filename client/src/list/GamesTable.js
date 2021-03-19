@@ -20,6 +20,8 @@ import {
   Col,
 } from "reactstrap";
 
+import APIURL from '../helpers/environment'
+
 const GamesTable = (props) => {
     console.log(props, "GamesTable.js")
   const [gamesList, setGamesList] = useState([]);
