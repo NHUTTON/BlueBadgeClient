@@ -1,45 +1,61 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Row, Col, Container} from 'reactstrap';
+import {Navbar,
+    NavbarBrand,
+    NavbarToggler,
+    Collapse,
+    Nav,
+    NavItem,
+    Button} from 'reactstrap';
 
 import Login from  './Login';
 import Register from  './Register';
+import Logo from '../assets/Logo.png';
 
 const Auth = (props) => {
-    const [currentUser, setCurrentUser] = useState('');
-    const [clickLogin, setClickLogin] = useState(false);
-    const [clickRegister, setClickRegister] = useState(false);
+    console.log('auth:', props);
+    const [isOpen, setIsOpen] = useState(false);
+    const [login, setLogin] = useState(true);
+    const [signUp, setSignUp] = useState(false);
+    
 
     const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~1234567890]/;
 
-    /*
-        Need to add logic for displaying the modal
-            a useState variable (boolean) to switch between on/off (when user pushes login/signup and the submit button)
-            
-            if not, modal will open on refresh, we only want it to fire when the login/register
-    */
 
-    const displayLogin = () => {
-        setClickLogin(!clickLogin);
+    const toggle = () => {
+        setIsOpen(!isOpen);
     }
 
-    const displayRegister = () => {
-        setClickRegister(!clickRegister);
-    }
+    const toggleLogin = () => setLogin(true);
+    const toggleLoginOff = () => setLogin(false);
+
+    const toggleSignUp = () => setSignUp(true);
+    const toggleSignUpOff = () => setSignUp(false);
 
     return(
         <>
-            <br/>
-            <Container className='Auth'>
-                <Row style={{float: "right"}}>
-                    <Col>
-                        <Button type='click' onClick={displayLogin}size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "2em"}}>LOGIN</Button>
+            <Navbar color='faded' light expand='md' className='Auth' style={{marginTop: "1em"}}>
+                <NavbarBrand><img src={Logo} alt='logo' style={{height: "60px", marginLeft: "4em"}}/></NavbarBrand>
+                <NavbarToggler onClick={toggle}/>
+                <Collapse isOpen={isOpen} navbar>
+                    <Nav className='ml-auto' navbar style={{marginRight: "3em"}}>
+                        <NavItem>
+                            <Button type='click' onClick={toggleLogin} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px", marginRight: "2em"}}>LOGIN</Button>
+                        </NavItem>
+                        <NavItem>
+                            <Button type='click' onClick={toggleSignUp} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px"}}>SIGN UP</Button>
+                        </NavItem>
+                    </Nav>
+                </Collapse>
+            </Navbar>
+                    {
+                    login 
+                        ? <Login toggleLoginOff={toggleLoginOff} clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleLogin={toggleLogin} login={login}/> 
+                        : <></>
+                    }
 
-                        <Button type='click' onClick={displayRegister} size='lg' style={{backgroundColor: "#BB86FC", color: "#292929", border: "none", borderRadius: "25px"}}>SIGN UP</Button>
-                    </Col>
-                    {clickLogin ? <Login url={props.url} updateToken={props.updateToken} format={format}/> : <></>}
-                    {clickRegister ? <Register url={props.url} updateToken={props.updateToken} format={format}/> : <></>}
-                </Row>
-            </Container>
+                    {signUp 
+                    ? <Register clearToken={props.clearToken} url={props.url} updateToken={props.updateToken} format={format} toggleSignUp={toggleSignUp} toggleSignUpOff={toggleSignUpOff} signUp={signUp}/> 
+                    : <></>}
         </>
     )
 }
